@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bus.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="lesson-24.cpp" />
     <ClCompile Include="Product.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bus.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Shop.h" />

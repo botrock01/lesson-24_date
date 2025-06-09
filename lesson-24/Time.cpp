@@ -166,3 +166,86 @@ Time_ Time_::operator-(long h) const& {
     result -= h;
     return result;
 }
+
+//============================================================LESSON-25=================================================================
+Time_& Time_::operator++() {
+    *this += 1;
+    return *this;
+}
+
+Time_ Time_::operator++(int) {
+    Time_ temp = *this;
+    *this += 1;
+    return temp;
+}
+
+Time_& Time_::operator--() {
+    *this -= 1;
+    return *this;
+}
+
+Time_ Time_::operator--(int) {
+    Time_ temp = *this;
+    *this -= 1;
+    return temp;
+}
+
+Time_ operator + (int seconds, const Time_& a) {
+    return a + seconds;
+}
+
+Time_ operator - (int seconds, const Time_& a) {
+    return a - seconds;
+}
+
+Time_ operator + (float minutes, const Time_& a) {
+    return a + minutes;
+}
+
+Time_ operator - (float minutes, const Time_& a) {
+    return a - minutes;
+}
+
+Time_ operator + (long hours, const Time_& a) {
+    return a + hours;
+}
+
+Time_ operator - (long hours, const Time_& a) {
+    return a - hours;
+}
+
+ostream& operator << (ostream& os, const Time_& t) {
+    if (!t.valid()) {
+        return os << "Invalid time";
+    }
+
+    int displayHour = t.hour;
+    string suffix;
+
+    if (!t.format) { 
+        suffix = (displayHour >= 12) ? " PM" : " AM";
+        displayHour = displayHour % 12;
+        if (displayHour == 0) displayHour = 12;
+    }
+
+    os << setw(2) << setfill('0') << displayHour << ":"
+        << setw(2) << setfill('0') << t.minutes << ":"
+        << setw(2) << setfill('0') << t.seconds << suffix;
+
+    return os;
+}
+
+istream& operator >> (istream& is, Time_& t) {
+    int h, m, s;
+    char sep1, sep2;
+    is >> h >> sep1 >> m >> sep2 >> s;
+    if (sep1 != ':' || sep2 != ':' || h < 0 || h > 23 || m < 0 || m > 59 || s < 0 || s > 59) {
+        is.setstate(ios::failbit);
+    }
+    else {
+        t.setHour(h);
+        t.setMinutes(m);
+        t.setSeconds(s);
+    }
+    return is;
+}

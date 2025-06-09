@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+using namespace std;
 class Time_
 {
 public:
@@ -28,6 +30,11 @@ public:
 	void untickTime(); //every tick remove one second
 	void showTime()const; //show time by the format
 
+	Time_& operator -- ();
+	Time_ operator -- (int);
+	Time_& operator ++ ();
+	Time_ operator ++ (int);
+
 	//--------- Comparison operators ---------
 	bool operator == (const Time_& obj)const&;
 	bool operator != (const Time_& obj)const&;
@@ -51,5 +58,21 @@ public:
 	Time_ operator - (float m)const&;
 	Time_ operator + (long h)const&; // add hours
 	Time_ operator - (long h)const&;
+
+
+		
+
+		friend Time_ operator + (int seconds, const Time_ & a);
+		friend Time_ operator - (int seconds, const Time_ & a);
+
+		friend Time_ operator + (float minutes, const Time_ & a);
+		friend Time_ operator - (float minutes, const Time_ & a);
+
+		friend Time_ operator + (long hours, const Time_ & a);
+		friend Time_ operator - (long hours, const Time_ & a);
+
+
+		friend ostream& operator << (ostream & os, const Time_ & t);
+		friend istream& operator >> (istream & is, Time_ & t);
 
 };

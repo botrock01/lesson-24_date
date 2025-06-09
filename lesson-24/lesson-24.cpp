@@ -4,6 +4,8 @@
 #include "Product.h"
 #include "Shop.h"
 #include "Time.h"
+#include "Bus.h"
+
 
 int main()
 {
@@ -74,7 +76,8 @@ int main()
     cout << "=======================================\n";
     posad.delExpiredProducts();*/
 
-        Time_ t1(14, 30, 45, true);
+    //TIME
+        /*Time_ t1(14, 30, 45, true);
         Time_ t2(2, 30, 45, false);
 
         t1.showTime();
@@ -98,5 +101,15 @@ int main()
             cout << "t1 < t2\n";
         }
 
+        return 0;*/
+
+    //BUS
+
+        Time_ start(6, 0, 0);
+        Time_ end(11, 0, 0);
+        Bus bus(start, end, 30, 10);
+        bus.generateSchedule();
+        bus.printSchedule();
         return 0;
+
 }
